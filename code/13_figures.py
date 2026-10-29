@@ -16,7 +16,7 @@ import os; os.makedirs(OUT,exist_ok=True)
 # Fig 1 workflow
 st=[('Data collection','Scopus, 2016 to 2025',f"295 SJR LIS journals; {K['records']:,} records"),
  ('Cleaning',f"{K['items']:,} research items",f"Balanced panel: {K['bal_j']} journals, {K['bal_n']:,} items"),
- ('Journal tiers','Core (182), adjacent (71), peripheral (42)',f"Checked by vocabulary (AUC {K['auc']:.2f})"),
+ ('Journal tiers','Core (182), adjacent (71), peripheral (42)',f"Vocabulary and classifier checks (AUC {K['auc']:.2f})"),
  ('Text representation','TF-IDF of title, abstract, keywords','Condensed to 256 dimensions'),
  ('Clustering','Similarity network; Leiden algorithm',f"{K['n_fronts']} fronts and {K['n_topics']} topics"),
  ('Trajectories','Yearly share, growth rate, peak year','Bursts; journal concentration'),
@@ -31,8 +31,8 @@ for i,(t,d1,d2) in enumerate(st):
     if i<len(st)-1: ax.annotate('',xy=(5.35,y-0.17),xytext=(5.35,y+0.2),arrowprops=dict(arrowstyle='-|>',color='black',lw=0.9))
 fig.savefig(OUT+'fig1.png',bbox_inches='tight'); plt.close()
 # Fig 2 decision chain
-q=[('Peak in 2020, 2021, or 2022, at least 15% above\nthe pre-pandemic share (2016 to 2019), and\n2025 share at most 60% of the peak?','Peaked'),
-   ('Share in 2024 and 2025 at least three times\nthe pre-pandemic share?','Emergent'),
+q=[('Peak in 2020, 2021, or 2022, at least 15% above\nthe mean pre-pandemic share (2016 to 2019),\nand 2025 share at most 60% of the peak?','Peaked'),
+   ('Mean share in 2024 and 2025 at least three\ntimes the mean pre-pandemic share?','Emergent'),
    ('Share rising significantly (p < 0.05)?','Growing'),('Share falling significantly (p < 0.05)?','Declining')]
 fig,ax=plt.subplots(figsize=(6.3,5.0)); ax.set_xlim(0,10); ax.set_ylim(-0.9,4.15); ax.axis('off')
 for i,(t,o) in enumerate(q):
