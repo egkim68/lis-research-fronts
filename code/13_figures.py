@@ -14,10 +14,12 @@ TC={'Emergent':'#6250d6','Growing':'#2a78d6','Stable':'#2e8b57','Peaked':'#eb683
 OUT='figs/'
 import os; os.makedirs(OUT,exist_ok=True)
 # Fig 1 workflow
+import os as _os
+_v=pd.read_csv('journal_validation.csv') if _os.path.exists('journal_validation.csv') else None; _agree=(_v.y==_v.pred).mean()*100 if _v is not None else float('nan')
 from journal_tiers import TIERS as _T; import collections as _c; _tc=_c.Counter(t for t,_ in _T.values())
 st=[('Data collection','Scopus, 2016 to 2025',f"295 SJR LIS journals; {K['records']:,} records"),
  ('Cleaning',f"{K['items']:,} research items",f"Balanced panel: {K['bal_j']} journals, {K['bal_n']:,} items"),
- ('Journal tiers',f"Core ({_tc['C']}), adjacent ({_tc['A']}), peripheral ({_tc['P']})",f"Text-based checks (AUC {K['auc']:.2f})"),
+ ('Journal tiers',f"Core ({_tc['C']}), adjacent ({_tc['A']}), peripheral ({_tc['P']})",f"Classifier agreement {_agree:.1f}%"),
  ('Text representation','TF-IDF of title, abstract, keywords','Condensed to 256 dimensions'),
  ('Clustering','Similarity network; Leiden algorithm',f"{K['n_fronts']} fronts and {K['n_topics']} topics"),
  ('Trajectories','Yearly share, growth rate, peak year','Bursts; journal concentration'),
