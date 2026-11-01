@@ -85,7 +85,7 @@ language resources and evaluation|P|CMP
 journal of payavard salamat|P|NAT
 vine journal of information and knowledge management systems|A|ISM
 revista ibero-americana de ciencia da informacao|C|INF
-data intelligence|P|CMP
+data intelligence|C|INF
 tuna|A|HER
 serials librarian|C|LIB
 electronic library|C|LIB
@@ -204,7 +204,7 @@ manuscripta orientalia|A|HER
 international journal of knowledge processing studies|A|ISM
 information resources management journal|A|ISM
 library resources and technical services|C|LIB
-science editor and publisher|A|HER
+science editor and publisher|C|SCI
 journal of business and finance librarianship|C|LIB
 information and organization|A|ISM
 art documentation|C|LIB
@@ -225,7 +225,7 @@ open information science|C|INF
 internet reference services quarterly|C|LIB
 archiwa, biblioteki i muzea koscielne|C|ARC
 grey journal|C|INF
-boletim do arquivo da universidade de coimbra|A|HER
+boletim do arquivo da universidade de coimbra|C|ARC
 african journal of library archives and information science|C|LIB
 biblios|C|LIB
 journal of library and information services in distance learning|C|LIB
@@ -270,7 +270,7 @@ information and media|A|COM
 performance measurement and metrics|C|LIB
 informing science|A|ISM
 terminology|P|OSS
-discover computing|A|ISM
+discover computing|P|CMP
 masaryk university journal of law and technology|P|OSS
 journal of information ethics|A|COM
 teorie vedy / theory of science|P|OSS

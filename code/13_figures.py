@@ -14,9 +14,10 @@ TC={'Emergent':'#6250d6','Growing':'#2a78d6','Stable':'#2e8b57','Peaked':'#eb683
 OUT='figs/'
 import os; os.makedirs(OUT,exist_ok=True)
 # Fig 1 workflow
+from journal_tiers import TIERS as _T; import collections as _c; _tc=_c.Counter(t for t,_ in _T.values())
 st=[('Data collection','Scopus, 2016 to 2025',f"295 SJR LIS journals; {K['records']:,} records"),
  ('Cleaning',f"{K['items']:,} research items",f"Balanced panel: {K['bal_j']} journals, {K['bal_n']:,} items"),
- ('Journal tiers','Core (182), adjacent (71), peripheral (42)',f"Vocabulary and classifier checks (AUC {K['auc']:.2f})"),
+ ('Journal tiers',f"Core ({_tc['C']}), adjacent ({_tc['A']}), peripheral ({_tc['P']})",f"Text-based checks (AUC {K['auc']:.2f})"),
  ('Text representation','TF-IDF of title, abstract, keywords','Condensed to 256 dimensions'),
  ('Clustering','Similarity network; Leiden algorithm',f"{K['n_fronts']} fronts and {K['n_topics']} topics"),
  ('Trajectories','Yearly share, growth rate, peak year','Bursts; journal concentration'),
@@ -83,6 +84,6 @@ for fn,types in [('fig5',['Emergent','Growing']),('fig6',['Peaked','Declining'])
     for i,(g,c) in enumerate(zip(gro,core)):
         ax.text(n_y+0.25,i,g,va='center',ha='left',fontsize=11); ax.text(n_y+2.5,i,c,va='center',ha='left',fontsize=11)
     ax.text(n_y+0.25,-0.62,'Growth',fontsize=11,ha='left',va='bottom'); ax.text(n_y+2.5,-0.62,'Core',fontsize=11,ha='left',va='bottom')
-    cax=fig.add_axes([0.93,0.35,0.02,0.4]); cb=fig.colorbar(im,cax=cax,ticks=[0,1]); cb.ax.set_yticklabels(['min','max'],fontsize=11); cb.outline.set_visible(False); cax.set_title('Share',fontsize=11,loc='left')
+    cax=fig.add_axes([1.0,0.35,0.02,0.4]); cb=fig.colorbar(im,cax=cax,ticks=[0,1]); cb.ax.set_yticklabels(['min','max'],fontsize=11); cb.outline.set_visible(False); cax.set_title('Share',fontsize=11,loc='left')
     fig.savefig(OUT+fn+'.png',bbox_inches='tight'); plt.close()
 print('done')
